@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internship Review Presentation</title>
+    <style>
+      :root {
+        --primary: #3a86ff;
+        --secondary: #8338ec;
+        --accent: #ff006e;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --success: #38b000;
+        --warning: #ffbe0b;
+        --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5;
+        color: var(--dark);
+        padding: 20px;
+      }
+
+      .slides-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .slide {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .slide-number {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-size: 12px;
+        opacity: 0.5;
+      }
+
+      .slide-content {
+        padding: 40px;
+        position: relative;
+        min-height: 500px;
+      }
+
+      .title-slide {
+        background: url("./imgs/bg.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 0 20px;
+      }
+      .title-slide::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      .title-slide h1 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+        z-index: 2;
+      }
+
+      .title-slide h2 {
+        font-size: 1.5rem;
+        margin-bottom: 50px;
+        opacity: 0.9;
+        z-index: 2;
+      }
+
+      .title-slide .presenter-info {
+        margin-top: 50px;
+        z-index: 2;
+        border: 1px white solid;
+        border-radius: 8px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      .title-slide .presenter-info p {
+        margin: 8px 0;
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      h2.slide-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--primary);
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+      }
+
+      .summary-points {
+        list-style-type: none;
+      }
+
+      .summary-points li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .summary-points li::before {
+        content: "✔";
+        color: var(--success);
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      .project-item {
+        margin-bottom: 25px;
+      }
+
+      .project-item h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .project-item h3 .emoji {
+        margin-right: 10px;
+        font-size: 1.5rem;
+      }
+
+      .contribution-tag {
+        background: var(--primary);
+        color: white;
+        font-size: 0.8rem;
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-left: 10px;
+      }
+
+      .tech-stack {
+        margin-top: 30px;
+      }
+
+      .tech-stack h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .tech-category {
+        margin-bottom: 10px;
+      }
+
+      .tech-category h4 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .tech-category ul {
+        list-style-type: none;
+        margin-left: 15px;
+      }
+
+      .tech-category ul li {
+        margin-bottom: 5px;
+      }
+
+      .contributions {
+        list-style-type: none;
+        margin-bottom: 30px;
+      }
+
+      .contributions li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .contributions li::before {
+        content: "✅";
+        margin-right: 10px;
+      }
+
+      .screens-developed {
+        margin-top: 20px;
+      }
+
+      .screens-developed h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .screens-developed h3 .emoji {
+        margin-right: 10px;
+      }
+
+      .screens-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .screen-item {
+        background: #f0f2f5;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .screen-item .emoji {
+        margin-right: 8px;
+      }
+
+      .impact-section {
+        margin-top: 30px;
+        background: rgba(56, 176, 0, 0.1);
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-left: 5px solid var(--success);
+      }
+
+      .impact-section h3 {
+        font-size: 1.2rem;
+        color: var(--success);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .impact-section h3 .emoji {
+        margin-right: 10px;
+      }
+
+      .challenge-solution {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .challenge-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 15px;
+        align-items: center;
+      }
+
+      .challenge-item .challenge {
+        background: rgba(255, 190, 11, 0.1);
+        padding: 10px 15px;
+        border-radius: 8px;
+        border-left: 3px solid var(--warning);
+        display: flex;
+        align-items: center;
+      }
+
+      .challenge-item .solution {
+        background: rgba(56, 176, 0, 0.1);
+        padding: 10px 15px;
+        border-radius: 8px;
+        border-left: 3px solid var(--success);
+        display: flex;
+        align-items: center;
+      }
+
+      .challenge-item .emoji {
+        margin-right: 8px;
+        font-size: 1.2rem;
+      }
+
+      .skills-section {
+        margin-top: 30px;
+      }
+
+      .skills-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .skills-section h3 .emoji {
+        margin-right: 10px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .skills-list {
+        list-style-type: none;
+      }
+
+      .skills-list li {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .skills-list li::before {
+        content: "✔";
+        color: var(--success);
+        margin-right: 10px;
+      }
+
+      .conclusion-section {
+        margin-top: 20px;
+      }
+
+      .conclusion-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .conclusion-section h3 .emoji {
+        margin-right: 10px;
+      }
+
+      .connect-section {
+        margin-top: 40px;
+      }
+
+      .connect-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .connect-section h3 .emoji {
+        margin-right: 10px;
+      }
+
+      .connect-list {
+        list-style-type: none;
+      }
+
+      .connect-list li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .connect-list li .emoji {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+
+      .thank-you-slide {
+        background: url("./imgs/bg2.jpg");
+        color: white;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .thank-you-slide::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      .thank-you-slide h2 {
+        font-size: 3rem;
+        margin-bottom: 30px;
+        z-index: 2;
+      }
+
+      .thank-you-slide p {
+        font-size: 1.5rem;
+        opacity: 0.9;
+        z-index: 2;
+      }
+      .image-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      img {
+        width: 32%;
+        height: "100%";
+        border-radius: 10px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        object-fit: contain;
+      }
+
+      img:hover {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slides-container">
+      <!-- Slide 1: Title Slide -->
+      <div class="slide">
+        <div class="slide-content title-slide">
+          <h1>Internship Review Presentation</h1>
+          <h2>My Contributions & Learnings</h2>
+
+          <div class="presenter-info">
+            <p>👤VIVEK THUMU</p>
+            <p>🏢 GYTWORKZ</p>
+            <p>📅 Sept 2024 - Present</p>
+          </div>
+          <div class="slide-number">1</div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Introduction -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">Introduction</h2>
+
+          <p style="margin-bottom: 30px">
+            "Hello everyone, you all know that I had opportunity to work as a
+            SDE Intern at our company GYTWORKZ. In this presentation, I'm going
+            to showcase my contributions in projects, and key learnings during
+            this internship."
+          </p>
+
+          <h3 style="font-size: 1.4rem; margin-bottom: 20px">
+            🌟 Summary of Contributions
+          </h3>
+
+          <ul class="summary-points">
+            <li>Worked on 3 Major Projects</li>
+            <li>
+              Contributed 80-88% of the code in RunTailor mobile applications
+            </li>
+            <li>Optimized performance and reduced google maps costs</li>
+            <li>
+              Implemented important features, integrations, UI Screens, and UI
+              enhancements
+            </li>
+          </ul>
+
+          <div class="slide-number">2</div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Projects Overview -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">Projects Overview</h2>
+
+          <div class="project-overview">
+            <h3 style="font-size: 1.4rem; margin-bottom: 20px">
+              📌 3 Major Projects:
+            </h3>
+
+            <div class="project-item">
+              <h3><span class="emoji">1️⃣</span> Unihire (React)</h3>
+            </div>
+
+            <div class="project-item">
+              <h3>
+                <span class="emoji">2️⃣</span> RunTailor Mobile Customer (React
+                Native -
+                <a
+                  target="_blank"
+                  href="https://play.google.com/store/apps/details?id=com.gyt.runtailor&pcampaignid=web_share"
+                >
+                  Deployed on Playstore </a
+                >)
+                <span class="contribution-tag">80% Contribution</span>
+              </h3>
+            </div>
+
+            <div class="project-item">
+              <h3>
+                <span class="emoji">3️⃣</span> RunTailor Mobile Partner (React
+                Native) <span class="contribution-tag">92% Contribution</span>
+              </h3>
+            </div>
+          </div>
+
+          <div class="tech-stack">
+            <h3>💡 Tech Stack Used:</h3>
+
+            <div class="tech-grid">
+              <div class="tech-category">
+                <h4>Frontend:</h4>
+                <ul>
+                  <li>React</li>
+                  <li>React Native</li>
+                </ul>
+              </div>
+
+              <div class="tech-category">
+                <h4>State Management:</h4>
+                <ul>
+                  <li>Redux</li>
+                  <li>Redux Toolkit</li>
+                  <li>Thunks</li>
+                </ul>
+              </div>
+
+              <div class="tech-category">
+                <h4>APIs & Integrations:</h4>
+                <ul>
+                  <li>Google Maps</li>
+                  <li>Razorpay</li>
+                  <li>Keychain Service</li>
+                </ul>
+              </div>
+
+              <div class="tech-category">
+                <h4>Other:</h4>
+                <ul>
+                  <li>Performance Optimization in GPS fetching</li>
+                  <li>About 20+ UI/UX Screens</li>
+                  <li>UI/UX Enhancements</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="slide-number">3</div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Unihire (React) – Key Contributions -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">Unihire (React) – Key Contributions</h2>
+
+          <ul class="contributions">
+            <li>
+              Owned the entire frontend development with little support of
+              Siddhanth
+            </li>
+            <li>Implemented required Redux Thunks & Reducers</li>
+            <li>
+              Built customer package UI Pages and logic in it , Enhance the
+              filters
+            </li>
+          </ul>
+
+          <div class="impact-section">
+            <h3><span class="emoji">🚀</span> Impact:</h3>
+            <p>
+              Delivered a project within deadlines by collaborating with backend
+              team mayuresh
+            </p>
+          </div>
+
+          <div class="slide-number">4</div>
+        </div>
+      </div>
+
+      <!-- Slide 5: RunTailor Mobile Customer – Contributions -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">
+            RunTailor Mobile Customer (React Native) – 70% Contribution
+          </h2>
+
+          <ul class="contributions">
+            <li>Developed 70% of the codebase</li>
+            <li>
+              Optimized GPS redux State – Abstracted logic & handled failure
+              scenarios
+            </li>
+            <li>
+              Google Maps Reverse Geolocation – Reduced Google billing from 100%
+              to 3%
+            </li>
+            <li>Initialized Razorpay Payment Integration</li>
+          </ul>
+
+          <div class="screens-developed">
+            <h3><span class="emoji">📌</span> Screens Developed:</h3>
+            <div class="screens-list">
+              <div class="screen-item">
+                <span class="emoji">📍</span> Address Screen
+              </div>
+              <div class="screen-item">
+                <span class="emoji">📍</span> Boutique Details Screen
+              </div>
+              <div class="screen-item">
+                <span class="emoji">📍</span> Place order Screen
+              </div>
+              <div class="screen-item">
+                <span class="emoji">📍</span> Location Modal (current location
+                ,saved address , cities )
+              </div>
+              <div class="screen-item">
+                <span class="emoji">📍</span> About Screen
+              </div>
+              <div class="screen-item">
+                <span class="emoji">📍</span> Delete Account screen
+              </div>
+              <div class="screen-item">
+                <span class="emoji">📍</span> Menu screen modifications
+              </div>
+            </div>
+
+            <div class="impact-section">
+              <h3><span class="emoji">🚀</span> Impact:</h3>
+              <p>
+                Optimized usage of Google GPS services & reduced operational
+                costs, reduced significant amount on Google API expenses.
+              </p>
+            </div>
+
+            <div class="image-container">
+              <img src="./imgs/address.jpg" alt="Image 1" />
+              <img src="./imgs/boutiqeDetails.jpg" alt="Image 1" />
+              <img src="./imgs/placeOrder.jpg" alt="Image 1" />
+            </div>
+            <div class="image-container">
+              <img src="./imgs/locationModal.jpg" alt="Image 1" />
+              <img src="./imgs/deleteAccount.jpg" alt="Image 1" />
+              <img src="./imgs/CMenu.jpg" alt="Image 1" />
+            </div>
+            <div class="image-container">
+              <img src="./imgs/editAddress_2.jpg" alt="Image 1" />
+            </div>
+          </div>
+          <div class="slide-number">5</div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Alert Service – Push Notifications -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">Alert Service – Push Notifications</h2>
+
+          <ul class="contributions">
+            <li>
+              Integrated Foreground & Background Notifications for both Partner
+              and Customer App
+            </li>
+          </ul>
+
+          <div style="margin-top: 50px; text-align: center">
+            <div
+              style="
+                max-width: 500px;
+                margin: 0 auto;
+                background: #f8f9fa;
+                border-radius: 10px;
+                padding: 20px;
+              "
+            >
+              <h3 style="margin-bottom: 20px; text-align: center">
+                Notification Flow
+              </h3>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  gap: 20px;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    background: white;
+                    padding: 15px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+                  "
+                >
+                  <div style="font-size: 2rem; margin-bottom: 10px">📱</div>
+                  <h4>Foreground</h4>
+                  <p style="font-size: 0.9rem">App in use</p>
+                </div>
+                <div
+                  style="
+                    background: white;
+                    padding: 15px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+                  "
+                >
+                  <div style="font-size: 2rem; margin-bottom: 10px">🔔</div>
+                  <h4>Background</h4>
+                  <p style="font-size: 0.9rem">App not active</p>
+                </div>
+                <div
+                  style="
+                    background: white;
+                    padding: 15px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+                  "
+                >
+                  <div style="font-size: 2rem; margin-bottom: 10px">👆</div>
+                  <h4>Click Handling</h4>
+                  <p style="font-size: 0.9rem">
+                    User interaction (DeepLinking)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-number">6</div>
+        </div>
+      </div>
+
+      <!-- Slide 7: RunTailor Mobile Partner – Contributions -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">
+            RunTailor Mobile Partner (React Native) – 92% Contribution
+          </h2>
+
+          <ul class="contributions">
+            <li>Developed 92% of the codebase</li>
+            <li>
+              Set up FCM Notifications, API Instance, Redux Toolkit, Thunks, and
+              Keychain Service
+            </li>
+            <li>Completed UI screens in just 3 weeks</li>
+          </ul>
+
+          <div class="screens-developed">
+            <h3><span class="emoji">📌</span> Screens Developed:</h3>
+            <div class="screens-list">
+              <div class="screen-item">
+                <span class="emoji">🎯</span> Login & OTP
+              </div>
+              <div class="screen-item">
+                <span class="emoji">🎯</span> KnowEarn & YouEarn
+              </div>
+              <div class="screen-item">
+                <span class="emoji">🎯</span> Profile View & Edit
+              </div>
+              <div class="screen-item">
+                <span class="emoji">🎯</span> Notifications
+              </div>
+              <div class="screen-item">
+                <span class="emoji">🎯</span> Settings
+              </div>
+              <div class="screen-item">
+                <span class="emoji">🎯</span> Help Section
+              </div>
+              <div class="screen-item">
+                <span class="emoji">🎯</span> Vacancies
+              </div>
+              <div class="screen-item">
+                <span class="emoji">🎯</span> Dashboard
+              </div>
+            </div>
+          </div>
+
+          <div class="impact-section">
+            <h3><span class="emoji">🚀</span> Impact:</h3>
+            <p>Delivered UI/UX screens for a client demo which pleased her.</p>
+          </div>
+
+          <div class="image-container">
+            <img src="./imgs/login.jpg" alt="Image 1" />
+            <img src="./imgs/otpVerify.jpg" alt="Image 1" />
+            <img src="./imgs/verifyOTP2.jpg" alt="Image 1" />
+          </div>
+          <div class="image-container">
+            <img src="./imgs/knowEarns.jpg" alt="Image 1" />
+            <img src="./imgs/youEarns.jpg" alt="Image 1" />
+            <img src="./imgs/menu.jpg" alt="Image 1" />
+          </div>
+          <div class="image-container">
+            <img src="./imgs/viewProfile.jpg" alt="Image 1" />
+            <img src="./imgs/editProfile.jpg" alt="Image 1" />
+            <img src="./imgs/editProfile3.jpg" alt="Image 1" />
+          </div>
+          <div class="image-container">
+            <img src="./imgs/help.jpg" alt="Image 1" />
+            <img src="./imgs/opportunities.jpg" alt="Image 1" />
+            <img src="./imgs/settings.jpg" alt="Image 1" />
+          </div>
+          <div class="image-container">
+            <img src="./imgs/vacancies.jpg" alt="Image 1" />
+            <img src="./imgs/notifications.jpg" alt="Image 1" />
+          </div>
+          <div class="image-container">
+            <img src="./imgs/dashBoard.jpg" alt="Image 1" />
+          </div>
+          <div class="slide-number">7</div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Challenges & Solutions -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">Challenges & Solutions</h2>
+
+          <h3 style="font-size: 1.4rem; margin-bottom: 20px">
+            <span class="emoji">📌</span> Challenges Faced & How I Solved Them
+          </h3>
+
+          <div class="challenge-solution">
+            <div class="challenge-item">
+              <div class="challenge">
+                <span class="emoji">❌</span>
+                <span
+                  >Managing multiple projects simultaneously (Customer App &
+                  Partner App)</span
+                >
+              </div>
+              <div class="solution">
+                <span class="emoji">✅</span>
+                <span>Prioritized tasks and acted accordingly</span>
+              </div>
+            </div>
+
+            <div class="challenge-item">
+              <div class="challenge">
+                <span class="emoji">❌</span>
+                <span>Google Maps API cost was too high</span>
+              </div>
+              <div class="solution">
+                <span class="emoji">✅</span>
+                <span
+                  >Implemented Redux state management and replaced watch
+                  position with geolocation, reducing costs from 100% to
+                  3%</span
+                >
+              </div>
+            </div>
+
+            <div class="challenge-item">
+              <div class="challenge">
+                <span class="emoji">❌</span>
+                <span>Ensuring Redux state management efficiency</span>
+              </div>
+              <div class="solution">
+                <span class="emoji">✅</span>
+                <span>Optimized Redux Toolkit & Thunks</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="impact-section" style="margin-top: 40px">
+            <h3><span class="emoji">🚀</span> Impact:</h3>
+            <p>
+              Effective project handling, cost savings, and improved performance
+            </p>
+          </div>
+          <div class="slide-number">8</div>
+        </div>
+      </div>
+
+      <!-- Slide 9: Key Learnings & Growth -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">Key Learnings & Growth</h2>
+
+          <div class="skills-section">
+            <h3><span class="emoji">🌱</span> Technical Skills Gained:</h3>
+
+            <ul class="skills-list">
+              <li>Advanced React & React Native development</li>
+              <li>Redux Toolkit, API optimizations, Keychain security</li>
+              <li>
+                Third-party integrations: Razorpay, Google Maps, Notification
+                Services
+              </li>
+            </ul>
+          </div>
+
+          <div class="skills-section">
+            <h3><span class="emoji">🎯</span> Soft Skills Developed:</h3>
+
+            <ul class="skills-list">
+              <li>Time management & handling multiple projects</li>
+              <li>Working independently & owned the project</li>
+              <li>
+                Collaborating with teams & delivering according to client needs
+              </li>
+            </ul>
+          </div>
+
+          <div class="impact-section">
+            <h3><span class="emoji">🚀</span> Impact:</h3>
+            <p>
+              Strengthened technical expertise & ability to own and deliver
+              projects independently.
+            </p>
+          </div>
+          <div class="slide-number">9</div>
+        </div>
+      </div>
+
+      <!-- Slide 10: Conclusion & Appreciation -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">Conclusion & Appreciation</h2>
+
+          <div class="conclusion-section">
+            <h3><span class="emoji">📌</span> What's Next?</h3>
+
+            <ul class="skills-list">
+              <li>
+                Looking to contribute more at GYTWORKZ, i.e., seeking a
+                full-time opportunity
+              </li>
+              <li>
+                Continuing to improve in React Native, Redux, and many more
+                technologies
+              </li>
+              <li>
+                Looking forward to more challenging projects & opportunities
+              </li>
+            </ul>
+          </div>
+
+          <div class="conclusion-section">
+            <h3><span class="emoji">🙏</span> Special Thanks To:</h3>
+
+            <ul class="skills-list">
+              <li>
+                My mentors Srinivas Byka , Sidhanth (Unihire), Suleman , Bharath
+                , Salik , Veekshan , Rohith for their valuable guidance
+              </li>
+              <li>
+                The entire RunTailor Team and Unihire Backend Team for their
+                support
+              </li>
+              <li>
+                Everyone who contributed to my learning experience in GYTWORKZ
+              </li>
+            </ul>
+          </div>
+
+          <div class="connect-section">
+            <h3><span class="emoji">📞</span> Connect with me:</h3>
+
+            <ul class="connect-list">
+              <li>
+                <span class="emoji">📧</span> Email:
+                <a href="mailto:vivekthumu@gytworkz.com">
+                  vivekthumu@gytworkz.com</a
+                >
+              </li>
+              <li>
+                <span class="emoji">💼</span> LinkedIn:
+                <a
+                  href="https://www.linkedin.com/in/vivek-thumu-179162250/"
+                  target="_blank"
+                >
+                  Vivek Thumu
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="slide-number">10</div>
+        </div>
+      </div>
+
+      <!-- Thank You Slide -->
+      <div class="slide">
+        <div class="slide-content thank-you-slide">
+          <h2>Thank You!</h2>
+          <div class="slide-number">11</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
